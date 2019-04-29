@@ -13,11 +13,14 @@ class TodoList extends Component {
                 id: uuid()
             }]
         }
+        this.addTodo = this.addTodo.bind(this)
     }
 
-    addTodo() {
-
-        this.setState(curState => [...curState, ])
+    addTodo(todo) {
+        let newTodo = {...todo, id: uuid()}
+        this.setState(curState => ({
+            todos : [...curState.todos, newTodo ]
+        }))
     }
   
     render() {
@@ -27,7 +30,7 @@ class TodoList extends Component {
         <h1 className="TodoList-Title">Todo List</h1>
         <p className="TodoList-Subtitle">A Simple React Todo List app</p>
         {todo}
-        <NewTodoForm />
+        <NewTodoForm add={this.addTodo}/>
         
       </div>
     )
