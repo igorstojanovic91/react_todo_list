@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewTodoForm from './NewTodoForm'
 import Todo from './Todo'
+import uuid from 'uuid/v4'
 
 class TodoList extends Component {
     constructor(props) {
@@ -8,9 +9,15 @@ class TodoList extends Component {
         this.state = {
             todos: [{
                 text: "This is a Todo",
-                done: false
+                done: false,
+                id: uuid()
             }]
         }
+    }
+
+    addTodo() {
+
+        this.setState(curState => [...curState, ])
     }
   
     render() {
