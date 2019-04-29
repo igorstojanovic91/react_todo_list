@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Todo.css'
 
 class Todo extends Component {
     constructor(props) {
@@ -52,39 +53,37 @@ class Todo extends Component {
 
         if (!isEdditing) {
             display = ( 
-            <div className="Todo">
-                <div className="Todo-text">
-                    <p onClick={this.handleClickToggle}>{this.props.text}</p>
-                </div>
+            <li className="Todo">
+                <p className={this.props.done ? "Todo-task done" : "Todo-task"}onClick={this.handleClickToggle}>{this.props.text}</p>
                 <div className="Todo-icons">
-                    <i className="fas fa-edit" onClick={this.handleClickToggleUpdate} ></i>
-                    <i className="far fa-trash-alt" onClick={this.handleClickDelete}></i>
+                    <button onClick={this.handleClickToggleUpdate}><i className="fas fa-edit"  ></i></button>
+                    <button><i className="far fa-trash-alt" onClick={this.handleClickDelete}></i></button>
                 </div>
-            </div>
+            </li>
             )
         } else {
             display = (
-            <div className="Todo-form">
-                <form onSubmit={this.handleClickUpdateSubmit}>
-                <label htmlFor="text"></label>
-                    <input 
-                    value={this.state.text}
-                    name="text"
-                    type="text"
-                    onChange={this.handleClickUpdate} 
-                    /> 
-                    <button>Update Todo</button>
-                </form>
-                
+                <div className="Todo">
+                    <div className="Todo-edit-form">
+                    <form onSubmit={this.handleClickUpdateSubmit}>
+                    <label htmlFor="text"></label>
+                        <input 
+                        value={this.state.text}
+                        name="text"
+                        type="text"
+                        onChange={this.handleClickUpdate} 
+                        /> 
+                        <button>Update Todo</button>
+                    </form>
+                    
+                    </div>
             </div>
             )
         }
         
         return (
-            
             <div>
                 {display}
-                
             </div>
             
         )
