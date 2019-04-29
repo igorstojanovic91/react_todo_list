@@ -15,6 +15,8 @@ class TodoList extends Component {
         }
         this.addTodo = this.addTodo.bind(this)
         this.removeTodo = this.removeTodo.bind(this)
+        this.updateTodo = this.updateTodo.bind(this)
+        this.toggleTodo = this.toggleTodo.bind(this)
     }
 
     addTodo(todo) {
@@ -29,11 +31,24 @@ class TodoList extends Component {
         this.setState({todos : obj})
     }
 
+    updateTodo(id) {
+        
+    }
+
+    toggleTodo(id) {
+        this.setState({
+            todos : this.state.todos.map(todo => (todo.id === id ? {...todo, done: !todo.done} : todo))
+        })
+    }
+
     remove
   
     render() {
         const todo = this.state.todos.map(todo => 
-        <Todo text={todo.text} done={todo.done} key={todo.id} id={todo.id}  remove={this.removeTodo}
+        <Todo text={todo.text} done={todo.done} key={todo.id} id={todo.id}  
+        remove={this.removeTodo}
+        update={this.updateTodo}
+        toggle={this.toggleTodo}
         />)
     return (
       <div className="TodoList">
