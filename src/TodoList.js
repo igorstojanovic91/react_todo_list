@@ -10,6 +10,7 @@ class TodoList extends Component {
             todos: [{
                 text: "This is a Todo",
                 done: false,
+                isEdditing: false,
                 id: uuid()
             }]
         }
@@ -31,8 +32,10 @@ class TodoList extends Component {
         this.setState({todos : obj})
     }
 
-    updateTodo(id) {
-        
+    updateTodo(id, updateText) {
+        this.setState({
+            todos : this.state.todos.map(todo => (todo.id === id ? {...todo, text: updateText} : todo))
+        })
     }
 
     toggleTodo(id) {
@@ -45,10 +48,11 @@ class TodoList extends Component {
   
     render() {
         const todo = this.state.todos.map(todo => 
-        <Todo text={todo.text} done={todo.done} key={todo.id} id={todo.id}  
+        <Todo text={todo.text} done={todo.done} key={todo.id} id={todo.id} isEdditing={todo.isEdditing}
         remove={this.removeTodo}
         update={this.updateTodo}
         toggle={this.toggleTodo}
+        
         />)
     return (
       <div className="TodoList">
